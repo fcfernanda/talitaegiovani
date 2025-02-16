@@ -1,0 +1,8 @@
+body {
+    background-color: #f3e0d5;  /* Cor de fundo */
+    background-image: url('/static/fundo.jpg');  /* Imagem de fundo (caso queira usar uma imagem) */
+    background-size: cover;  /* Ajusta a imagem para cobrir toda a tela */
+    background-position: center;  /* Centraliza a imagem */
+    color: #a66631;  /* Cor do texto */
+    font-family: Arial, sans-serif;  /* Fonte do texto */
+}

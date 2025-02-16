@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chá de Casa Nova - Talita e Giovani</title>
+    <style>
+        /* CSS personalizado */
+        body {
+            background-color: #f3e0d5;  /* Cor de fundo */
+            background-image: url('/static/fundo.jpg');  /* Imagem de fundo (caso queira usar uma imagem) */
+            background-size: cover;  /* Ajusta a imagem para cobrir toda a tela */
+            background-position: center;  /* Centraliza a imagem */
+            color: #a66631;  /* Cor do texto */
+            font-family: Arial, sans-serif; text-align: center; /* Fonte do texto */
+        }
+
+        table { 
+            width: 50%; 
+            margin: auto; 
+            border-collapse: collapse; 
+        }
+            
+        th, td { 
+            border: 1px solid black; 
+            padding: 10px; 
+        }
+        
+        form { 
+            display: inline; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Chá de Casa Nova - Talita e Giovani</h1>
+    <table>
+        <tr>
+            <th>Lista de Presentes</th>
+            <th>Quem vai dar?</th>
+            <th>Seu nome abaixo</th>
+        </tr>
+        {% for presente in presentes %}
+        <tr>
+            <td>{{ presente.nome }}</td>
+            <td>{{ presente.dado_por if presente.dado_por else "Disponível" }}</td>
+            <td>
+                {% if not presente.dado_por %}
+                <form action="{{ url_for('reservar', presente_id=presente.id) }}" method="post">
+                    <input type="text" name="nome" placeholder="Seu nome" required>
+                    <button type="submit">Reservar</button>
+                </form>
+                {% else %}
+                <span>Reservado</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
